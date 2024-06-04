@@ -3,7 +3,6 @@ package main
 //https://go.dev/doc/articles/wiki/
 
 import (
-	"errors"
 	"fmt"
 	"html/template"
 	"log"
@@ -17,7 +16,10 @@ type Page struct {
 	Body  []byte
 }
 
-var templates = template.Must(template.ParseFiles("edit.html", "view.html"))
+const TMPL_PATH = "tmpl/"
+const DATA_PATH = "data/"
+
+var templates = template.Must(template.ParseFiles(TMPL_PATH+"edit.html", TMPL_PATH+"view.html"))
 var validPath = regexp.MustCompile("^/(edit|save|view)/([a-zA-Z0-9]+)$")
 
 func main() {
@@ -61,12 +63,12 @@ func handler(w http.ResponseWriter, r *http.Request) {
 }
 
 func (p *Page) save() error {
-	filename := p.Title + ".txt"
+	filename := DATA_PATH + p.Title + ".txt"
 	return os.WriteFile(filename, p.Body, 0600)
 }
 
 func loadPage(title string) (*Page, error) {
-	filename := title + ".txt"
+	filename := DATA_PATH + title + ".txt"
 	body, err := os.ReadFile(filename)
 	if err != nil {
 		return nil, err
@@ -79,15 +81,6 @@ func renderTemplate(w http.ResponseWriter, tmpl string, p *Page) {
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
-}
-
-func getTitle(w http.ResponseWriter, r *http.Request) (string, error) {
-	m := validPath.FindStringSubmatch(r.URL.Path)
-	if m == nil {
-		http.NotFound(w, r)
-		return "", errors.New("invalid Page Title")
-	}
-	return m[2], nil // 标题是第二个子表达式。
 }
 
 func makeHandler(fn func(http.ResponseWriter, *http.Request, string)) http.HandlerFunc {
