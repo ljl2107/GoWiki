@@ -1,0 +1,119 @@
+/* 基本样式 */  
+body {  
+    font-family: 'Open Sans', sans-serif;  
+    margin: 0;  
+    padding: 20px;  
+    background-color: #f0f0f0;  
+    color: #333;  
+}  
+  
+/* 标题样式 */  
+h1 {  
+    text-align: center;  
+    color: #428bca;  
+    text-transform: uppercase;  
+    margin-bottom: 20px;  
+}  
+  
+/* 链接样式 */  
+a {  
+    text-decoration: none;  
+    color: #428bca;  
+    transition: color 0.3s ease;  
+}  
+  
+a:hover {  
+    color: #2a6496;  
+}  
+  
+/* 编辑链接样式 */  
+p.edit-link {  
+    text-align: right;  
+    margin-bottom: 20px;  
+}  
+  
+p.edit-link a {  
+    display: inline-block;  
+    background-color: #4CAF50;  
+    color: white;  
+    padding: 5px 10px;  
+    border-radius: 4px;  
+    font-weight: bold;  
+    transition: background-color 0.3s ease;  
+}  
+  
+p.edit-link a:hover {  
+    background-color: #45a049;  
+}  
+  
+/* 内容区域样式 */  
+.content {  
+    background-color: white;  
+    padding: 20px;  
+    border-radius: 4px;  
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);  
+    margin-bottom: 20px;  
+}  
+  
+/* 段落样式 */  
+p {  
+    line-height: 1.6;  
+    margin-bottom: 15px;  
+}  
+  
+/* 列表样式 */  
+ul, ol {  
+    list-style-position: inside;  
+    padding-left: 20px;  
+}  
+  
+/* 强调样式 */  
+em {  
+    font-style: italic;  
+}  
+  
+/* 突出样式 */  
+strong {  
+    font-weight: bold;  
+}  
+  
+/* 标题样式（可选） */  
+h2, h3, h4, h5, h6 {  
+    margin-top: 20px;  
+    margin-bottom: 10px;  
+}  
+  
+h2 {  
+    color: #666;  
+}  
+  
+h3 {  
+    color: #777;  
+}  
+  
+/* 图片样式（可选） */  
+img {  
+    max-width: 100%;  
+    height: auto;  
+    display: block;  
+    margin: 0 auto;  
+}  
+  
+/* 表格样式（可选） */  
+table {  
+    width: 100%;  
+    border-collapse: collapse;  
+    margin-bottom: 20px;  
+}  
+  
+th, td {  
+    border: 1px solid #ddd;  
+    padding: 8px;  
+    text-align: left;  
+}  
+  
+th {  
+    background-color: #f2f2f2;  
+}  
+  
+/* 其他你需要的样式... */

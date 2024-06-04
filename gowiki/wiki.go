@@ -3,6 +3,7 @@ package main
 //https://go.dev/doc/articles/wiki/
 
 import (
+	"fmt"
 	"html/template"
 	"log"
 	"net/http"
@@ -20,9 +21,12 @@ const DATA_PATH = "data/"
 const HOME_PATH = "/view/FrontPage"
 
 var templates = template.Must(template.ParseFiles(TMPL_PATH+"edit.html", TMPL_PATH+"view.html"))
-var validPath = regexp.MustCompile("^/(edit|save|view)/([a-zA-Z0-9]+)$")
+var validPath = regexp.MustCompile("^/(edit|save|view|static)/([a-zA-Z0-9]+)$")
+var staticPath = regexp.MustCompile("^/(static)/([a-zA-Z0-9]+)/([a-zA-Z0-9]+)\\.([a-zA-Z]+)$")
 
 func main() {
+	// http.HandleFunc("/static/", makeHandler(staticResHandler))
+	http.Handle("/static/", http.FileServer(http.Dir("")))
 	http.HandleFunc("/view/", makeHandler(viewHandler))
 	http.HandleFunc("/edit/", makeHandler(editHandler))
 	http.HandleFunc("/save/", makeHandler(saveHandler))
@@ -30,6 +34,8 @@ func main() {
 
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
+
+// ********* handler start **************/
 
 func viewHandler(w http.ResponseWriter, r *http.Request, title string) {
 	p, err := loadPage(title)
@@ -63,6 +69,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, HOME_PATH, http.StatusFound)
 }
 
+// ********* handler end **************/
 func (p *Page) save() error {
 	filename := DATA_PATH + p.Title + ".txt"
 	return os.WriteFile(filename, p.Body, 0600)
@@ -91,6 +98,7 @@ func makeHandler(fn func(http.ResponseWriter, *http.Request, string)) http.Handl
 			http.NotFound(w, r)
 			return
 		}
+		fmt.Println(m)
 		fn(w, r, m[2])
 	}
 }
