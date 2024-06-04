@@ -3,7 +3,6 @@ package main
 //https://go.dev/doc/articles/wiki/
 
 import (
-	"fmt"
 	"html/template"
 	"log"
 	"net/http"
@@ -18,15 +17,17 @@ type Page struct {
 
 const TMPL_PATH = "tmpl/"
 const DATA_PATH = "data/"
+const HOME_PATH = "/view/FrontPage"
 
 var templates = template.Must(template.ParseFiles(TMPL_PATH+"edit.html", TMPL_PATH+"view.html"))
 var validPath = regexp.MustCompile("^/(edit|save|view)/([a-zA-Z0-9]+)$")
 
 func main() {
-	//http.HandleFunc("/", handler)
 	http.HandleFunc("/view/", makeHandler(viewHandler))
 	http.HandleFunc("/edit/", makeHandler(editHandler))
 	http.HandleFunc("/save/", makeHandler(saveHandler))
+	http.HandleFunc("/", handler)
+
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
 
@@ -59,7 +60,7 @@ func saveHandler(w http.ResponseWriter, r *http.Request, title string) {
 }
 
 func handler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "嗨,我喜欢 %s!", r.URL.Path[1:])
+	http.Redirect(w, r, HOME_PATH, http.StatusFound)
 }
 
 func (p *Page) save() error {
