@@ -15,7 +15,10 @@
 
     <p>[<a href="/edit/{{.Title}}">编辑</a>]</p> 
 
-    <div>{{printf "%s" .Body}}</div>
+    <!-- <div>{{printf "%s" .Body}}</div> -->
+    <div>
+        <textarea readonly>{{printf "%s" .Body}}</textarea>
+    </div>
     <p>[<a href="/list">目录</a>]</p> 
 </body>
 </html>
