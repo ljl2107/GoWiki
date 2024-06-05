@@ -1,0 +1,72 @@
+/* common.css */  
+  
+/* 重置默认边距和填充 */  
+body, h1, ul, li, a {  
+    margin: 0;  
+    padding: 0;  
+    box-sizing: border-box;  
+    font-family: Arial, sans-serif;  
+}  
+  
+/* 设置基本样式 */  
+body {  
+    background-color: #f2f2f2;  
+    padding: 20px;  
+}  
+  
+h1 {  
+    color: #333;  
+    text-align: center;  
+    margin-bottom: 20px;  
+}  
+  
+/* 链接样式 */  
+a {  
+    color: #007bff;  
+    text-decoration: none;  
+    transition: color 0.3s ease;  
+}  
+  
+a:hover {  
+    color: #0056b3;  
+    text-decoration: underline;  
+}  
+  
+/* 列表样式 */  
+ul {  
+    list-style-type: none;  
+    padding-left: 20px;  
+}  
+  
+li {  
+    margin-bottom: 10px;  
+}  
+  
+/* 可选的样式，比如添加边框或背景色 */  
+li a {  
+    display: block;  
+    padding: 5px 0;  
+    border-bottom: 1px solid #ddd;  
+}  
+  
+/* 如果你想要第一个和最后一个元素有不同的样式 */  
+li:first-child a {  
+    border-top: 1px solid #ddd;  
+}  
+  
+li:last-child a {  
+    border-bottom: none;  
+}  
+  
+/* 响应式样式（可选） */  
+@media screen and (max-width: 600px) {  
+    body {  
+        padding: 10px;  
+    }  
+    h1 {  
+        font-size: 1.5em;  
+    }  
+    ul {  
+        padding-left: 10px;  
+    }  
+}

@@ -1,2 +1,3 @@
-你好，欢迎来到gowike！
+你好，欢迎来到gowiki！
+
 我是ljl

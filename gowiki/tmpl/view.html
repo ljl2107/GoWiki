@@ -6,6 +6,7 @@
     <title>Go Wiki From ljl - view</title>
     <!-- <link rel="stylesheet" href="css/view.css"> -->
     <style>
+        @import url(../static/css/common.css);
         @import url(../static/css/view.css);
     </style>
 </head>
@@ -15,7 +16,6 @@
     <p>[<a href="/edit/{{.Title}}">编辑</a>]</p> 
 
     <div>{{printf "%s" .Body}}</div>
-
     <p>[<a href="/list">目录</a>]</p> 
 </body>
 </html>
