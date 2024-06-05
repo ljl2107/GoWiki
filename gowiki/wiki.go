@@ -9,6 +9,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"path/filepath"
 	"regexp"
 )
 
@@ -130,9 +131,15 @@ func setTitleList() {
 	if nil != err {
 		return
 	}
-	titlelists = nil
+	titlelists = titlelists[:0]
+
 	for _, file := range filelist {
-		title := file.Name()
-		titlelists = append(titlelists, title[:len(title)-4])
+		ext := filepath.Ext(file.Name())
+		if len(file.Name()) > len(ext) {
+			title := file.Name()[:len(file.Name())-len(ext)]
+			titlelists = append(titlelists, title)
+		} else {
+			fmt.Printf("Skipping file with short name: %s\n", file.Name())
+		}
 	}
 }
