@@ -65,6 +65,7 @@ func saveHandler(w http.ResponseWriter, r *http.Request, title string) {
 	body := r.FormValue("body")
 	p := &Page{Title: title, Body: []byte(body)}
 	err := p.save()
+	setTitleList()
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
@@ -129,6 +130,7 @@ func setTitleList() {
 	if nil != err {
 		return
 	}
+	titlelists = nil
 	for _, file := range filelist {
 		title := file.Name()
 		titlelists = append(titlelists, title[:len(title)-4])
