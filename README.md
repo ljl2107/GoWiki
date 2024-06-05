@@ -27,3 +27,13 @@ Here are some simple tasks you might want to tackle on your own:
 这个问题的描述确实让我费解，可能是我的阅读理解还不够好
 
 最后我决定做个目录的跳转吧
+
+
+# 启动方法
+`cd gowiki`
+
+`go build wiki.go`
+
+`./wiki`
+
+浏览器访问`http://localhost:8080`
